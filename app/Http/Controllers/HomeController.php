@@ -1,0 +1,39 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Anggota;
+use App\Models\Galeri;
+use App\Models\Proker;
+
+class HomeController extends Controller
+{
+    public function index()
+    {
+        $prokerBerjalan = Proker::whereIn('status', ['rencana', 'berlangsung'])
+            ->orderBy('tanggal_mulai')
+            ->take(3)
+            ->get();
+
+        $galeriTerbaru = Galeri::latest('tanggal')->take(6)->get();
+
+        $stat = [
+            'anggota_aktif' => Anggota::aktif()->count(),
+            'proker_berjalan' => Proker::whereIn('status', ['rencana', 'berlangsung'])->count(),
+            'proker_selesai' => Proker::where('status', 'selesai')->count(),
+        ];
+
+        return view('home', compact('prokerBerjalan', 'galeriTerbaru', 'stat'));
+    }
+
+    public function profil()
+    {
+        $pengurus = Anggota::whereNotNull('jabatan')
+            ->where('jabatan', '!=', '')
+            ->where('status', 'aktif')
+            ->orderBy('nama')
+            ->get();
+
+        return view('profil', compact('pengurus'));
+    }
+}
