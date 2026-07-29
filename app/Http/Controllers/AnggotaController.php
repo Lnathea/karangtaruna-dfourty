@@ -13,6 +13,7 @@ class AnggotaController extends Controller
             ->where(function ($q) {
                 $q->where('sumber', '!=', 'mandiri')->orWhere('status', 'aktif');
             })
+            ->orderByRaw('urutan_jabatan IS NULL, urutan_jabatan ASC')
             ->orderBy('nama');
 
         if ($request->filled('cari')) {
