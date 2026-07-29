@@ -9,7 +9,11 @@ class AnggotaController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Anggota::query()->orderBy('nama');
+        $query = Anggota::query()
+            ->where(function ($q) {
+                $q->where('sumber', '!=', 'mandiri')->orWhere('status', 'aktif');
+            })
+            ->orderBy('nama');
 
         if ($request->filled('cari')) {
             $query->where('nama', 'like', '%'.$request->string('cari').'%');

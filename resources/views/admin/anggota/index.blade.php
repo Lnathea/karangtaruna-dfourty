@@ -41,7 +41,14 @@
                                     </div>
                                 @endif
                             </td>
-                            <td class="px-5 py-3 font-medium whitespace-nowrap">{{ $anggota->nama }}</td>
+                            <td class="px-5 py-3 font-medium whitespace-nowrap">
+                                {{ $anggota->nama }}
+                                @if ($anggota->sumber === 'mandiri' && $anggota->status === 'nonaktif')
+                                    <span class="ml-2 inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold bg-amber-100 text-amber-800 border border-amber-200">
+                                        Menunggu Verifikasi
+                                    </span>
+                                @endif
+                            </td>
                             <td class="px-5 py-3 text-ink-soft">{{ $anggota->jabatan ?: '—' }}</td>
                             <td class="px-5 py-3 text-ink-soft truncate max-w-[200px]" title="{{ $anggota->alamat }}">{{ $anggota->alamat ?: '—' }}</td>
                             <td class="px-5 py-3 text-ink-soft">{{ $anggota->rt_rw ?: '—' }}</td>
@@ -52,6 +59,13 @@
                                 </span>
                             </td>
                             <td class="px-5 py-3 text-right space-x-3 whitespace-nowrap">
+                                @if ($anggota->sumber === 'mandiri' && $anggota->status === 'nonaktif')
+                                    <form action="{{ route('admin.anggota.verify', $anggota) }}" method="POST" class="inline">
+                                        @csrf
+                                        @method('PATCH')
+                                        <button type="submit" class="text-leaf hover:text-leaf-dark font-medium">Verifikasi</button>
+                                    </form>
+                                @endif
                                 <a href="{{ route('admin.anggota.edit', $anggota) }}" class="text-leaf hover:text-leaf-dark font-medium">Ubah</a>
                                 <form action="{{ route('admin.anggota.destroy', $anggota) }}" method="POST" class="inline" onsubmit="return confirm('Hapus data anggota ini?');">
                                     @csrf

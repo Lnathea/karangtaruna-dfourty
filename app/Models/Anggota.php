@@ -17,6 +17,7 @@ class Anggota extends Model
         'rt_rw',
         'jabatan',
         'status',
+        'sumber',
         'tanggal_bergabung',
         'foto',
         'catatan',

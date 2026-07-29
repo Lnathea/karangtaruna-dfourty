@@ -72,6 +72,13 @@ class AnggotaController extends Controller
         return redirect()->route('admin.anggota.index')->with('status', 'Data anggota berhasil dihapus.');
     }
 
+    public function verify(Anggota $anggota)
+    {
+        $anggota->update(['status' => 'aktif']);
+
+        return redirect()->route('admin.anggota.index')->with('status', "Pendaftaran {$anggota->nama} berhasil diverifikasi dan diaktifkan.");
+    }
+
     private function validated(Request $request): array
     {
         return $request->validate([

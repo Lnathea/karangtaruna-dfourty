@@ -5,12 +5,21 @@
 @section('content')
 
     <section class="max-w-[1600px] mx-auto px-5 sm:px-8 pt-14 pb-8">
-        <p class="text-xs uppercase tracking-[0.2em] text-brick font-semibold mb-3">Keanggotaan</p>
-        <h1 class="font-display text-4xl mb-3">Anggota D'Fourty</h1>
-        <p class="text-ink-soft max-w-2xl">
-            Saat ini tercatat <span class="font-semibold text-ink">{{ $jumlahAktif }} anggota aktif</span>.
-            Data kontak pribadi anggota dikelola secara privat oleh pengurus.
-        </p>
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+            <div>
+                <p class="text-xs uppercase tracking-[0.2em] text-brick font-semibold mb-3">Keanggotaan</p>
+                <h1 class="font-display text-4xl mb-3">Anggota D'Fourty</h1>
+                <p class="text-ink-soft max-w-2xl">
+                    Saat ini tercatat <span class="font-semibold text-ink">{{ $jumlahAktif }} anggota aktif</span>.
+                    Data kontak pribadi anggota dikelola secara privat oleh pengurus.
+                </p>
+            </div>
+            <div>
+                <a href="{{ route('anggota.daftar') }}" class="inline-block rounded-md bg-brick text-white px-5 py-2.5 text-sm font-semibold hover:bg-brick-dark transition-colors">
+                    Daftar Jadi Anggota
+                </a>
+            </div>
+        </div>
 
         <form method="GET" class="mt-6">
             <input type="text" name="cari" value="{{ request('cari') }}" placeholder="Cari nama anggota..."

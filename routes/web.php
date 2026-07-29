@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\ProkerController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +23,8 @@ Route::get('/proker/{proker}', [ProkerController::class, 'show'])->name('proker.
 Route::get('/galeri', [GaleriController::class, 'index'])->name('galeri.index');
 
 Route::get('/anggota', [AnggotaController::class, 'index'])->name('anggota.index');
+Route::get('/daftar-anggota', [PendaftaranController::class, 'create'])->name('anggota.daftar');
+Route::post('/daftar-anggota', [PendaftaranController::class, 'store'])->name('anggota.daftar.store');
 
 // Login admin
 Route::middleware('guest')->group(function () {
@@ -58,5 +61,6 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::post('/anggota', [AdminAnggotaController::class, 'store'])->name('anggota.store');
     Route::get('/anggota/{anggota}/ubah', [AdminAnggotaController::class, 'edit'])->name('anggota.edit');
     Route::put('/anggota/{anggota}', [AdminAnggotaController::class, 'update'])->name('anggota.update');
+    Route::patch('/anggota/{anggota}/verifikasi', [AdminAnggotaController::class, 'verify'])->name('anggota.verify');
     Route::delete('/anggota/{anggota}', [AdminAnggotaController::class, 'destroy'])->name('anggota.destroy');
 });
