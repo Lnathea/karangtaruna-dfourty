@@ -17,13 +17,18 @@ class HomeController extends Controller
 
         $galeriTerbaru = Galeri::latest('tanggal')->take(6)->get();
 
+        $prokerPuncak = Proker::where('nama_kegiatan', 'like', '%Malam Puncak%')
+            ->whereIn('status', ['rencana', 'berlangsung'])
+            ->orderBy('tanggal_mulai')
+            ->first();
+
         $stat = [
             'anggota_aktif' => Anggota::aktif()->count(),
             'proker_berjalan' => Proker::whereIn('status', ['rencana', 'berlangsung'])->count(),
             'proker_selesai' => Proker::where('status', 'selesai')->count(),
         ];
 
-        return view('home', compact('prokerBerjalan', 'galeriTerbaru', 'stat'));
+        return view('home', compact('prokerBerjalan', 'galeriTerbaru', 'stat', 'prokerPuncak'));
     }
 
     public function profil()

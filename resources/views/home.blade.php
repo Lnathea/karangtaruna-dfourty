@@ -6,6 +6,73 @@
 
 @section('content')
 
+@if ($prokerPuncak)
+    <section class="bg-ink text-white">
+        <div class="max-w-[1600px] mx-auto px-5 sm:px-8 py-4 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6 text-center">
+            <p class="text-sm sm:text-base font-medium">
+                &#127881; Menuju <span class="text-leaf font-semibold">{{ $prokerPuncak->nama_kegiatan }}</span>
+            </p>
+            <div id="countdown" data-target="{{ $prokerPuncak->tanggal_mulai->format('Y-m-d') }}T18:00:00"
+                 class="flex items-center gap-3 sm:gap-4 font-display">
+                <div class="text-center">
+                    <span id="cd-days" class="block text-xl sm:text-2xl font-semibold text-leaf">00</span>
+                    <span class="block text-[9px] sm:text-[10px] uppercase tracking-widest text-white/60">Hari</span>
+                </div>
+                <span class="text-white/30 text-xl">:</span>
+                <div class="text-center">
+                    <span id="cd-hours" class="block text-xl sm:text-2xl font-semibold text-leaf">00</span>
+                    <span class="block text-[9px] sm:text-[10px] uppercase tracking-widest text-white/60">Jam</span>
+                </div>
+                <span class="text-white/30 text-xl">:</span>
+                <div class="text-center">
+                    <span id="cd-minutes" class="block text-xl sm:text-2xl font-semibold text-leaf">00</span>
+                    <span class="block text-[9px] sm:text-[10px] uppercase tracking-widest text-white/60">Menit</span>
+                </div>
+                <span class="text-white/30 text-xl">:</span>
+                <div class="text-center">
+                    <span id="cd-seconds" class="block text-xl sm:text-2xl font-semibold text-leaf">00</span>
+                    <span class="block text-[9px] sm:text-[10px] uppercase tracking-widest text-white/60">Detik</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+    (function () {
+        const el = document.getElementById('countdown');
+        const target = new Date(el.dataset.target).getTime();
+
+        function pad(n) { return String(n).padStart(2, '0'); }
+
+        function tick() {
+            const now  = new Date().getTime();
+            const diff = target - now;
+
+            if (diff <= 0) {
+                ['cd-days','cd-hours','cd-minutes','cd-seconds'].forEach(function(id) {
+                    document.getElementById(id).textContent = '00';
+                });
+                clearInterval(timer);
+                return;
+            }
+
+            const days    = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours   = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('cd-days').textContent    = pad(days);
+            document.getElementById('cd-hours').textContent   = pad(hours);
+            document.getElementById('cd-minutes').textContent = pad(minutes);
+            document.getElementById('cd-seconds').textContent = pad(seconds);
+        }
+
+        tick();
+        const timer = setInterval(tick, 1000);
+    })();
+    </script>
+@endif
+
     <section class="max-w-[1600px] mx-auto px-5 sm:px-8 pt-14 pb-16 grid md:grid-cols-5 gap-10 items-center">
         <div class="md:col-span-3">
             <p class="text-xs uppercase tracking-[0.2em] text-brick font-semibold mb-4">Karang Taruna RW 040 &middot; Panorama Wanasari</p>
