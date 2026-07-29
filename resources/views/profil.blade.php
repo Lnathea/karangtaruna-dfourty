@@ -36,31 +36,27 @@
 
     <section class="max-w-[1600px] mx-auto px-5 sm:px-8 py-10">
         <p class="text-xs uppercase tracking-[0.2em] text-brick font-semibold mb-6">Struktur Pengurus</p>
-        @if($pengurus->isEmpty())
-            <p class="text-ink-soft">Data struktur pengurus belum tersedia.</p>
+        @if ($pengurus->isEmpty())
+            <p class="text-ink-soft text-sm">Struktur pengurus belum diisi. Admin bisa mengisi kolom "Jabatan" pada Data Anggota untuk menampilkannya di sini.</p>
         @else
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                @foreach($pengurus as $index => $p)
-                    @php
-                        $tiltClass = 'mading-tilt-' . (($index % 3) + 1);
-                    @endphp
-                    <div class="mading-card {{ $tiltClass }} rounded-sm p-5 text-center flex flex-col items-center justify-center">
-                        @if($p->foto)
-                            <img src="{{ asset('storage/' . $p->foto) }}" alt="Foto {{ $p->nama }}" class="w-20 h-20 rounded-full object-cover mb-3 shadow-sm border border-ink/10">
+            <div class="grid sm:grid-cols-3 gap-5">
+                @foreach ($pengurus as $i => $anggota)
+                    <div class="mading-card mading-tilt-{{ ($i % 3) + 1 }} rounded-sm p-5 text-center flex flex-col items-center justify-center">
+                        @if($anggota->foto)
+                            <img src="{{ asset('storage/' . $anggota->foto) }}" alt="Foto {{ $anggota->nama }}" class="w-20 h-20 rounded-full object-cover mb-3 shadow-sm border border-ink/10">
                         @else
                             <div class="w-20 h-20 rounded-full bg-ink/5 flex items-center justify-center text-ink-soft font-display text-2xl mb-3 border border-ink/10">
-                                {{ substr($p->nama, 0, 1) }}
+                                {{ substr($anggota->nama, 0, 1) }}
                             </div>
                         @endif
-                        <p class="font-display text-lg leading-tight">{{ $p->nama }}</p>
-                        <p class="text-xs uppercase tracking-widest text-brick mt-1.5">{{ $p->jabatan }}</p>
+                        <p class="font-display text-lg leading-tight">{{ $anggota->nama }}</p>
+                        <p class="text-xs uppercase tracking-widest text-brick mt-1.5">{{ $anggota->jabatan }}</p>
                     </div>
                 @endforeach
             </div>
         @endif
         <p class="text-xs text-ink-soft mt-6">
-            Struktur lengkap dapat diperbarui oleh admin melalui data pada halaman
-            <a href="{{ route('anggota.index') }}" class="text-brick hover:underline">Data Anggota</a>.
+            Urutan tampil bisa diatur lewat kolom "Urutan di Profil" saat mengubah data anggota di panel admin.
         </p>
     </section>
 

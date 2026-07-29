@@ -41,10 +41,16 @@
                     class="w-full rounded-md border border-ink/15 bg-paper px-3 py-2 text-sm">
             </div>
             <div>
-                <label class="block text-xs uppercase tracking-widest text-ink-soft mb-1">RT/RW</label>
-                <input type="text" name="rt_rw" value="{{ old('rt_rw', $anggota->rt_rw) }}" placeholder="mis. RT 003/RW 040"
+                <label class="block text-xs uppercase tracking-widest text-ink-soft mb-1">Urutan di Profil (opsional)</label>
+                <input type="number" name="urutan_jabatan" value="{{ old('urutan_jabatan', $anggota->urutan_jabatan) }}" placeholder="mis. 1 untuk Ketua, 2 untuk Sekretaris"
                     class="w-full rounded-md border border-ink/15 bg-paper px-3 py-2 text-sm">
             </div>
+        </div>
+
+        <div>
+            <label class="block text-xs uppercase tracking-widest text-ink-soft mb-1">RT/RW</label>
+            <input type="text" name="rt_rw" value="{{ old('rt_rw', $anggota->rt_rw) }}" placeholder="mis. RT 003/RW 040"
+                class="w-full rounded-md border border-ink/15 bg-paper px-3 py-2 text-sm">
         </div>
 
         <div class="grid sm:grid-cols-2 gap-5">

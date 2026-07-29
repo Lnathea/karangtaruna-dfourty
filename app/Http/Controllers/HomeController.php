@@ -36,6 +36,7 @@ class HomeController extends Controller
         $pengurus = Anggota::whereNotNull('jabatan')
             ->where('jabatan', '!=', '')
             ->where('status', 'aktif')
+            ->orderByRaw('urutan_jabatan IS NULL, urutan_jabatan ASC')
             ->orderBy('nama')
             ->get();
 

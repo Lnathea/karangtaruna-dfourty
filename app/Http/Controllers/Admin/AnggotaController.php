@@ -88,6 +88,7 @@ class AnggotaController extends Controller
             'alamat' => ['nullable', 'string', 'max:255'],
             'rt_rw' => ['nullable', 'string', 'max:20'],
             'jabatan' => ['nullable', 'string', 'max:100'],
+            'urutan_jabatan' => ['nullable', 'integer', 'min:0'],
             'status' => ['required', 'in:aktif,nonaktif'],
             'tanggal_bergabung' => ['nullable', 'date'],
             'foto' => ['nullable', 'image', 'max:4096'],

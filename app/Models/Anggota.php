@@ -16,6 +16,7 @@ class Anggota extends Model
         'alamat',
         'rt_rw',
         'jabatan',
+        'urutan_jabatan',
         'status',
         'sumber',
         'tanggal_bergabung',
