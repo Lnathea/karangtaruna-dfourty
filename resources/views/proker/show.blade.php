@@ -2,6 +2,10 @@
 
 @section('title', $proker->nama_kegiatan)
 
+@section('og_title', $proker->nama_kegiatan . " — Karang Taruna D'Fourty")
+@section('og_description', \Illuminate\Support\Str::limit(strip_tags($proker->deskripsi), 150))
+@section('og_image', $proker->sampul ? asset('storage/'.$proker->sampul) : asset('images/logo.png'))
+
 @section('content')
 
     <section class="max-w-[900px] mx-auto px-5 sm:px-8 pt-14 pb-16">

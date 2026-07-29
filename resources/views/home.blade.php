@@ -2,6 +2,8 @@
 
 @section('title', 'Beranda')
 
+@section('og_image', $galeriTerbaru->isNotEmpty() ? asset('storage/'.$galeriTerbaru->first()->foto) : asset('images/logo.png'))
+
 @section('content')
 
     <section class="max-w-[1600px] mx-auto px-5 sm:px-8 pt-14 pb-16 grid md:grid-cols-5 gap-10 items-center">
