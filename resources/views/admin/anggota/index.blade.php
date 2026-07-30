@@ -12,12 +12,12 @@
         <a href="{{ route('admin.anggota.create') }}" class="rounded-md bg-brick text-white px-4 py-2 text-sm font-semibold hover:bg-brick-dark transition-colors">+ Tambah Anggota</a>
     </div>
 
-    <div class="bg-white/60 border border-ink/10 rounded-sm overflow-hidden overflow-x-auto">
+    <div class="bg-white border-t-4 border-leaf rounded-sm overflow-hidden overflow-x-auto shadow-sm">
         @if ($anggotas->isEmpty())
             <p class="px-5 py-6 text-ink-soft text-sm">Belum ada anggota yang tercatat.</p>
         @else
             <table class="w-full text-sm">
-                <thead class="bg-paper-dim/60 text-left text-xs uppercase tracking-widest text-ink-soft">
+                <thead class="bg-ink text-left text-xs uppercase tracking-widest text-white/90">
                     <tr>
                         <th class="px-5 py-3 w-16">Foto</th>
                         <th class="px-5 py-3">Nama</th>
@@ -31,7 +31,7 @@
                 </thead>
                 <tbody class="divide-y divide-ink/10">
                     @foreach ($anggotas as $anggota)
-                        <tr>
+                        <tr class="hover:bg-paper-dim/40 transition-colors">
                             <td class="px-5 py-3">
                                 @if($anggota->foto)
                                     <img src="{{ asset('storage/' . $anggota->foto) }}" alt="Foto {{ $anggota->nama }}" class="w-10 h-10 rounded-full object-cover">
@@ -63,14 +63,14 @@
                                     <form action="{{ route('admin.anggota.verify', $anggota) }}" method="POST" class="inline">
                                         @csrf
                                         @method('PATCH')
-                                        <button type="submit" class="text-leaf hover:text-leaf-dark font-medium">Verifikasi</button>
+                                        <button type="submit" class="text-leaf hover:text-leaf-dark font-medium hover:underline">Verifikasi</button>
                                     </form>
                                 @endif
-                                <a href="{{ route('admin.anggota.edit', $anggota) }}" class="text-leaf hover:text-leaf-dark font-medium">Ubah</a>
+                                <a href="{{ route('admin.anggota.edit', $anggota) }}" class="text-leaf hover:text-leaf-dark font-medium hover:underline">Ubah</a>
                                 <form action="{{ route('admin.anggota.destroy', $anggota) }}" method="POST" class="inline" onsubmit="return confirm('Hapus data anggota ini?');">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="text-brick hover:text-brick-dark font-medium">Hapus</button>
+                                    <button type="submit" class="text-brick hover:text-brick-dark font-medium hover:underline">Hapus</button>
                                 </form>
                             </td>
                         </tr>

@@ -14,7 +14,7 @@
     @else
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             @foreach ($galeris as $foto)
-                <div class="bg-white/60 border border-ink/10 rounded-sm overflow-hidden">
+                <div class="bg-white border border-ink/10 rounded-sm overflow-hidden hover:shadow-md transition-shadow">
                     <div class="aspect-square bg-paper-dim">
                         <img src="{{ asset('storage/'.$foto->foto) }}" alt="{{ $foto->judul }}" class="w-full h-full object-cover">
                     </div>
@@ -24,7 +24,7 @@
                             <p class="text-xs text-ink-soft mt-0.5">{{ $foto->proker->nama_kegiatan }}</p>
                         @endif
                         <div class="mt-3 flex items-center gap-3 text-sm">
-                            <a href="{{ route('admin.galeri.edit', $foto) }}" class="text-leaf hover:text-leaf-dark font-medium">Ubah</a>
+                            <a href="{{ route('admin.galeri.edit', $foto) }}" class="text-leaf hover:text-leaf-dark font-medium hover:underline">Ubah</a>
                             <form action="{{ route('admin.galeri.destroy', $foto) }}" method="POST" onsubmit="return confirm('Hapus foto ini?');">
                                 @csrf
                                 @method('DELETE')

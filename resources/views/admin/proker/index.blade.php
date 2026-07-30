@@ -9,12 +9,12 @@
         <a href="{{ route('admin.proker.create') }}" class="rounded-md bg-brick text-white px-4 py-2 text-sm font-semibold hover:bg-brick-dark transition-colors">+ Tambah Proker</a>
     </div>
 
-    <div class="bg-white/60 border border-ink/10 rounded-sm overflow-hidden">
+    <div class="bg-white border-t-4 border-leaf rounded-sm overflow-hidden shadow-sm">
         @if ($prokers->isEmpty())
             <p class="px-5 py-6 text-ink-soft text-sm">Belum ada proker yang tercatat.</p>
         @else
             <table class="w-full text-sm">
-                <thead class="bg-paper-dim/60 text-left text-xs uppercase tracking-widest text-ink-soft">
+                <thead class="bg-ink text-left text-xs uppercase tracking-widest text-white/90">
                     <tr>
                         <th class="px-5 py-3">Nama Kegiatan</th>
                         <th class="px-5 py-3">Tanggal</th>
@@ -24,7 +24,7 @@
                 </thead>
                 <tbody class="divide-y divide-ink/10">
                     @foreach ($prokers as $proker)
-                        <tr>
+                        <tr class="hover:bg-paper-dim/40 transition-colors">
                             <td class="px-5 py-3">
                                 <p class="font-medium">{{ $proker->nama_kegiatan }}</p>
                                 @if ($proker->kategori)
@@ -43,8 +43,8 @@
                                 </span>
                             </td>
                             <td class="px-5 py-3 text-right space-x-3 whitespace-nowrap">
-                                <a href="{{ route('proker.show', $proker) }}" class="text-ink-soft hover:text-brick">Lihat</a>
-                                <a href="{{ route('admin.proker.edit', $proker) }}" class="text-leaf hover:text-leaf-dark font-medium">Ubah</a>
+                                <a href="{{ route('proker.show', $proker) }}" class="text-ink-soft hover:text-brick hover:underline">Lihat</a>
+                                <a href="{{ route('admin.proker.edit', $proker) }}" class="text-leaf hover:text-leaf-dark font-medium hover:underline">Ubah</a>
                                 <form action="{{ route('admin.proker.destroy', $proker) }}" method="POST" class="inline" onsubmit="return confirm('Hapus proker ini?');">
                                     @csrf
                                     @method('DELETE')
