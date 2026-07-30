@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AnggotaController as AdminAnggotaController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GaleriController as AdminGaleriController;
 use App\Http\Controllers\Admin\ProkerController as AdminProkerController;
+use App\Http\Controllers\Admin\PengaturanController as AdminPengaturanController;
 use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
@@ -63,4 +64,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::put('/anggota/{anggota}', [AdminAnggotaController::class, 'update'])->name('anggota.update');
     Route::patch('/anggota/{anggota}/verifikasi', [AdminAnggotaController::class, 'verify'])->name('anggota.verify');
     Route::delete('/anggota/{anggota}', [AdminAnggotaController::class, 'destroy'])->name('anggota.destroy');
+
+    Route::get('/pengaturan', [AdminPengaturanController::class, 'edit'])->name('pengaturan.edit');
+    Route::put('/pengaturan', [AdminPengaturanController::class, 'update'])->name('pengaturan.update');
 });

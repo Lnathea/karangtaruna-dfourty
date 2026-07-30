@@ -8,10 +8,7 @@
         <p class="text-xs uppercase tracking-[0.2em] text-brick font-semibold mb-3">Profil Organisasi</p>
         <h1 class="font-display text-4xl mb-6">Karang Taruna D'Fourty</h1>
         <p class="text-ink-soft text-lg leading-relaxed">
-            D'Fourty adalah organisasi kepemudaan RW 040 Perumahan Panorama Wanasari, Cibitung, Bekasi.
-            Berdiri sebagai wadah aspirasi dan kreativitas pemuda-pemudi setempat, kami aktif menggerakkan
-            kegiatan sosial, gotong royong lingkungan, olahraga, seni, dan perayaan hari besar nasional
-            bersama seluruh warga RW 040.
+            {{ $pengaturan->deskripsi_organisasi }}
         </p>
     </section>
 
@@ -19,17 +16,17 @@
         <div class="mading-card mading-tilt-1 rounded-sm p-6">
             <h2 class="font-display text-xl text-leaf mb-2">Visi</h2>
             <p class="text-ink-soft leading-relaxed text-sm">
-                Menjadi wadah pemuda-pemudi RW 040 yang solid, kreatif, dan aktif berkontribusi
-                bagi kemajuan lingkungan serta kesejahteraan warga.
+                {{ $pengaturan->visi }}
             </p>
         </div>
         <div class="mading-card mading-tilt-2 rounded-sm p-6">
             <h2 class="font-display text-xl text-leaf mb-2">Misi</h2>
             <ul class="text-ink-soft leading-relaxed text-sm space-y-1.5 list-disc list-inside">
-                <li>Menghimpun dan mengembangkan potensi pemuda-pemudi RW 040.</li>
-                <li>Menyelenggarakan kegiatan sosial, olahraga, dan seni budaya secara rutin.</li>
-                <li>Mendorong gotong royong dan kepedulian terhadap lingkungan.</li>
-                <li>Menjadi jembatan komunikasi antara pemuda dan pengurus RT/RW.</li>
+                @foreach (explode("\n", $pengaturan->misi) as $poin)
+                    @if (trim($poin) !== '')
+                        <li>{{ trim($poin) }}</li>
+                    @endif
+                @endforeach
             </ul>
         </div>
     </section>

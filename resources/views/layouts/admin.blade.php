@@ -71,6 +71,7 @@
             <a href="{{ route('admin.proker.index') }}" class="block rounded-md px-3 py-2 transition-colors {{ request()->routeIs('admin.proker.*') ? 'bg-brick text-white' : 'text-paper/80 hover:bg-white/10' }}">Program Kerja</a>
             <a href="{{ route('admin.galeri.index') }}" class="block rounded-md px-3 py-2 transition-colors {{ request()->routeIs('admin.galeri.*') ? 'bg-brick text-white' : 'text-paper/80 hover:bg-white/10' }}">Galeri</a>
             <a href="{{ route('admin.anggota.index') }}" class="block rounded-md px-3 py-2 transition-colors {{ request()->routeIs('admin.anggota.*') ? 'bg-brick text-white' : 'text-paper/80 hover:bg-white/10' }}">Data Anggota</a>
+            <a href="{{ route('admin.pengaturan.edit') }}" class="block rounded-md px-3 py-2 transition-colors {{ request()->routeIs('admin.pengaturan.*') ? 'bg-brick text-white' : 'text-paper/80 hover:bg-white/10' }}">Pengaturan Situs</a>
         </nav>
         <div class="px-3 py-4 border-t border-paper/10 space-y-2">
             <a href="{{ route('home') }}" class="block rounded-md px-3 py-2 text-sm text-paper/70 hover:bg-white/10 transition-colors">&larr; Lihat situs publik</a>
