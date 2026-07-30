@@ -5,20 +5,20 @@
 @section('content')
 
     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
-        <div class="bg-white/60 border border-ink/10 rounded-sm p-5">
-            <p class="font-display text-3xl text-brick">{{ $stat['anggota_aktif'] }}</p>
+        <div class="bg-white border-t-4 border-leaf rounded-sm p-5 shadow-sm">
+            <p class="font-display text-3xl text-leaf">{{ $stat['anggota_aktif'] }}</p>
             <p class="text-xs uppercase tracking-widest text-ink-soft mt-1">Anggota Aktif</p>
         </div>
-        <div class="bg-white/60 border border-ink/10 rounded-sm p-5">
-            <p class="font-display text-3xl">{{ $stat['anggota_total'] }}</p>
+        <div class="bg-white border-t-4 border-ink rounded-sm p-5 shadow-sm">
+            <p class="font-display text-3xl text-ink">{{ $stat['anggota_total'] }}</p>
             <p class="text-xs uppercase tracking-widest text-ink-soft mt-1">Total Anggota</p>
         </div>
-        <div class="bg-white/60 border border-ink/10 rounded-sm p-5">
+        <div class="bg-white border-t-4 border-leaf rounded-sm p-5 shadow-sm">
             <p class="font-display text-3xl text-leaf">{{ $stat['proker_berjalan'] }}</p>
             <p class="text-xs uppercase tracking-widest text-ink-soft mt-1">Proker Berjalan</p>
         </div>
-        <div class="bg-white/60 border border-ink/10 rounded-sm p-5">
-            <p class="font-display text-3xl text-bamboo">{{ $stat['galeri_total'] }}</p>
+        <div class="bg-white border-t-4 border-ink rounded-sm p-5 shadow-sm">
+            <p class="font-display text-3xl text-ink">{{ $stat['galeri_total'] }}</p>
             <p class="text-xs uppercase tracking-widest text-ink-soft mt-1">Foto di Galeri</p>
         </div>
     </div>
@@ -35,7 +35,14 @@
                 @foreach ($prokerTerbaru as $proker)
                     <a href="{{ route('admin.proker.edit', $proker) }}" class="flex items-center justify-between px-5 py-3 hover:bg-paper-dim/50 transition-colors">
                         <span class="font-medium">{{ $proker->nama_kegiatan }}</span>
-                        <span class="text-xs uppercase tracking-widest text-ink-soft">{{ $proker->status }}</span>
+                        <span class="status-pill inline-block text-[11px] font-bold uppercase px-2 py-1 rounded
+                            {{ match($proker->status) {
+                                'berlangsung' => 'bg-leaf/15 text-leaf-dark',
+                                'selesai' => 'bg-ink/10 text-ink-soft',
+                                default => 'bg-bamboo/20 text-ink',
+                            } }}">
+                            {{ $proker->status }}
+                        </span>
                     </a>
                 @endforeach
             </div>

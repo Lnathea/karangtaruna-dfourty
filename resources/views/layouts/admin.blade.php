@@ -59,7 +59,7 @@
     <aside class="md:w-64 shrink-0 bg-ink text-paper flex flex-col">
         <div class="px-6 py-5 border-b border-paper/10">
             <div class="flex items-center gap-3">
-                <img src="{{ asset('storage/images/logo.png') }}" alt="Logo Karang Taruna D'Fourty" class="h-8 w-auto">
+                <img src="{{ asset('storage/images/logo.png') }}" alt="Logo Karang Taruna D'Fourty" class="h-9 w-9 object-contain">
                 <div>
                     <p class="font-display text-xl text-bamboo">D'Fourty</p>
                     <p class="text-xs uppercase tracking-widest text-paper/60">Panel Admin</p>
