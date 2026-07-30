@@ -21,6 +21,13 @@ class DashboardController extends Controller
 
         $prokerTerbaru = Proker::latest()->take(5)->get();
 
-        return view('admin.dashboard', compact('stat', 'prokerTerbaru'));
+        $menungguVerifikasi = Anggota::where('sumber', 'mandiri')
+            ->where('status', 'nonaktif')
+            ->latest()
+            ->get();
+
+        $galeriTerbaru = Galeri::latest('tanggal')->take(4)->get();
+
+        return view('admin.dashboard', compact('stat', 'prokerTerbaru', 'menungguVerifikasi', 'galeriTerbaru'));
     }
 }
